@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+/**
+ * Checks whether a word or phrase is a palindrome.
+ * Spaces, punctuation, and letter case are ignored.
+ */
+public class PalindromeChecker {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("--- Palindrome Checker ---");
+        System.out.print("Enter a word or phrase: ");
+        String input = scanner.nextLine();
+
+        if (isPalindrome(input)) {
+            System.out.println("Result: It is a palindrome.");
+        } else {
+            System.out.println("Result: It is not a palindrome.");
+        }
+
+        scanner.close();
+    }
+
+    /**
+     * Removes non-alphanumeric characters and compares characters
+     * from the beginning and end of the cleaned text.
+     */
+    public static boolean isPalindrome(String text) {
+        String cleanedText = text.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        int left = 0;
+        int right = cleanedText.length() - 1;
+
+        while (left < right) {
+            if (cleanedText.charAt(left) != cleanedText.charAt(right)) {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}
